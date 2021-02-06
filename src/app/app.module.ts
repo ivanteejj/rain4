@@ -11,18 +11,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module'
 
+import { baseURL } from './shared/baseurl';
+
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { HistoricalComponent } from './historical/historical.component';
+import { ForecastingComponent } from './forecasting/forecasting.component';
+
 import { HomeQueryComponent } from './home-query/home-query.component';
 
 import { StationsService } from './services/stations.service';
 import { HttpRetrieveService } from './services/http-retrieve.service';
-import { baseURL } from './shared/baseurl';
-import { HistoricalComponent } from './historical/historical.component';
-import { ForecastingComponent } from './forecasting/forecasting.component';
+import { HttpManipulateService } from './services/http-manipulate.service';
+import { TempResolverService } from './services/temp-resolver.service';
+import { RainfallResolverService } from './services/rainfall-resolver.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,7 @@ import { ForecastingComponent } from './forecasting/forecasting.component';
     HomeComponent,
     HomeQueryComponent,
     HistoricalComponent,
-    ForecastingComponent
+    ForecastingComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,10 @@ import { ForecastingComponent } from './forecasting/forecasting.component';
     {
       provide:'BaseURL', useValue: baseURL
     },
-    HttpRetrieveService
+    HttpRetrieveService,
+    TempResolverService,
+    RainfallResolverService,
+    HttpManipulateService
   ],
   bootstrap: [AppComponent]
 })
