@@ -2,21 +2,21 @@ import { Station } from './station';
 
 export const Stations : Station[] = [
     {
-        "id": "S77",
-        "device_id": "S77",
-        "name": "Alexandra Road",
-        "location": {
-            "latitude": 1.2937,
-            "longitude": 103.8125
-        }
-    },
-    {
         "id": "S109",
         "device_id": "S109",
         "name": "Ang Mo Kio Avenue 5",
         "location": {
             "latitude": 1.3764,
             "longitude": 103.8492
+        }
+    },
+    {
+        "id": "S77",
+        "device_id": "S77",
+        "name": "Alexandra Road",
+        "location": {
+            "latitude": 1.2937,
+            "longitude": 103.8125
         }
     },
     {
