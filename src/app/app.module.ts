@@ -26,8 +26,9 @@ import { HomeQueryComponent } from './home-query/home-query.component';
 import { StationsService } from './services/stations.service';
 import { HttpRetrieveService } from './services/http-retrieve.service';
 import { HttpManipulateService } from './services/http-manipulate.service';
-import { TempResolverService } from './services/temp-resolver.service';
-import { RainfallResolverService } from './services/rainfall-resolver.service';
+import { TempResolverService } from './services/resolvers/temp-resolver.service';
+import { RainfallResolverService } from './services/resolvers/rainfall-resolver.service';
+import { HumidityResolverService } from './services/resolvers/humidity-resolver.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { RainfallResolverService } from './services/rainfall-resolver.service';
     HttpRetrieveService,
     TempResolverService,
     RainfallResolverService,
-    HttpManipulateService
+    HttpManipulateService,
+    HumidityResolverService
   ],
   bootstrap: [AppComponent]
 })

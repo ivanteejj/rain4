@@ -18,16 +18,13 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class HomeQueryComponent implements OnInit {
   tempHttpRes : httpResponse;
-  tempItems : item[];
-  tempItem : item;
-  tempReadings : reading[];
   tempReading : reading;
 
   rainfallHttpRes : httpResponse;
-  rainfallItems : item[];
-  rainfallItem : item;
-  rainfallReadings : reading[];
   rainfallReading : reading;
+
+  humidityHttpRes : httpResponse;
+  humidityReading : reading;
 
   stations : Station[];
   selectedStation : Station;
@@ -36,7 +33,6 @@ export class HomeQueryComponent implements OnInit {
   selectedStationID : string;
 
   constructor(
-    private http : HttpRetrieveService,
     private actRoute : ActivatedRoute,
     private stationService : StationsService,
     private httpMan : HttpManipulateService
@@ -59,26 +55,24 @@ export class HomeQueryComponent implements OnInit {
           'items' : data.rainfallHttpRes.items,
           'metadata' : data.rainfallHttpRes.metadata
         }
+        
+        this.humidityHttpRes = {
+          'api_info' : data.humidityHttpRes.api_info,
+          'items' : data.humidityHttpRes.items,
+          'metadata' : data.humidityHttpRes.metadata
+        }
       }
     )
-
-    //this.tempItems = this.tempHttpRes.items;
-    //var tempLen = this.tempItems.length;
-    //this.tempItem = this.tempItems[tempLen - 1]
-    //this.tempReadings = this.tempItem['readings'];
-    //this.tempReading = this.tempReadings.filter(data => data.station_id === this.selectedStationID)[0];
 
     this.tempReading = this.httpMan.getLatestReadingFromHttpRes(this.tempHttpRes, this.selectedStation);
     console.log(this.tempReading)
 
-    /*
-    this.rainfallItems = this.rainfallHttpRes.items;
-    var rainLen = this.rainfallItems.length;
-    this.rainfallItem = this.rainfallItems[rainLen - 1]
-    this.rainfallReadings = this.rainfallItem['readings'];
-    */
     this.rainfallReading = this.httpMan.getLatestReadingFromHttpRes(this.rainfallHttpRes, this.selectedStation);
     console.log(this.rainfallReading)
+
+    this.humidityReading = this.httpMan.getLatestReadingFromHttpRes(this.humidityHttpRes, this.selectedStation);
+    console.log(this.humidityReading)
+
   }
 
   
@@ -86,7 +80,8 @@ export class HomeQueryComponent implements OnInit {
     this.selectedStation = this.stations.filter(data => data.id === this.selectedStationID)[0]
     this.tempReading = this.httpMan.getLatestReadingFromHttpRes(this.tempHttpRes, this.selectedStation);
     this.rainfallReading = this.httpMan.getLatestReadingFromHttpRes(this.rainfallHttpRes, this.selectedStation);
-  
+    this.humidityReading = this.httpMan.getLatestReadingFromHttpRes(this.humidityHttpRes, this.selectedStation);
+
     console.log(this.selectedStationID);
   }
 }
