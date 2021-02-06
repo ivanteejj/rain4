@@ -1,0 +1,18 @@
+<div class="container">
+    <h3>
+        Select Location:
+    </h3>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select Location</mat-label>
+        <mat-select [(value)]="selectedStationID">
+            <mat-option *ngFor="let station of stations" [value]="station.id">
+                {{station.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p>You selected: {{selectedStationID}}</p>
+
+    <app-home-query></app-home-query>
+</div>
