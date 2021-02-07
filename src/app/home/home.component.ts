@@ -17,5 +17,4 @@ export class HomeComponent implements OnInit {
     this.stations = this.stationsService.getStations();
     this.selectedStationID = this.stations[0].id;
   }
-
 }

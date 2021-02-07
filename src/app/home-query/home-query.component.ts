@@ -41,7 +41,7 @@ export class HomeQueryComponent implements OnInit {
     private actRoute : ActivatedRoute,
     private stationService : StationsService,
     private httpMan : HttpManipulateService,
-    private readingFormatter : ReadingFormatterService
+    private readingFormatter : ReadingFormatterService,
     ) { }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +11,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module'
+import { ChartsModule } from 'ng2-charts';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { baseURL } from './shared/baseurl';
 
@@ -31,6 +34,7 @@ import { ReadingFormatterService } from './services/reading-formatter.service';
 import { TempResolverService } from './services/resolvers/temp-resolver.service';
 import { RainfallResolverService } from './services/resolvers/rainfall-resolver.service';
 import { HumidityResolverService } from './services/resolvers/humidity-resolver.service';
+import { HistoricalChartComponent } from './historical-chart/historical-chart.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ import { HumidityResolverService } from './services/resolvers/humidity-resolver.
     HomeQueryComponent,
     HistoricalComponent,
     ForecastingComponent,
+    HistoricalChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,10 @@ import { HumidityResolverService } from './services/resolvers/humidity-resolver.
     FlexLayoutModule,
     MatSelectModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     StationsService,
