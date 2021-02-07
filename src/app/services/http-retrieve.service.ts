@@ -24,8 +24,6 @@ export class HttpRetrieveService {
     responseType: 'json',
     params: new HttpParams().set('date', date)
     });
-    console.log("HttpRetrieveService: ");
-    console.log(this.res.toPromise());
     return this.res;
   }
 }

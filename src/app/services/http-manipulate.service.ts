@@ -15,9 +15,7 @@ export class HttpManipulateService {
   }
 
   getLatestReadingFromHttpRes(response : httpResponse, station : Station) : reading {
-    console.log("Inside http-manipulate - httpResponse: ")
-    console.log(response)
-
+    console.log(response);
     var items = response.items;
     var itemsLen = items.length;
     var item = items[itemsLen - 1];

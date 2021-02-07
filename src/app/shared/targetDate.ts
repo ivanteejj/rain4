@@ -1,0 +1,1 @@
+export const targetDate : string = "2020-12-15";

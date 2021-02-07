@@ -7,9 +7,9 @@
         <h3>Temperatures | Rainfall</h3>
         <mat-list-item>
             <p matLine> {{ selectedStation.id }} {{ selectedStation.name }} </p>
-            <p matLine> Rainfall: {{ rainfallReading.value }} </p>
-            <p matLine> Temperature: {{ tempReading.value }}&#8451; </p>
-            <p matLine> Humidity: {{ humidityReading.value }}% </p>
+            <p matLine> Rainfall: {{ rainfallFormattedReading.outputString }} </p>
+            <p matLine> Temperature: {{ tempFormattedReading.outputString }} </p>
+            <p matLine> Humidity: {{ humidityFormattedReading.outputString }} </p>
 
         </mat-list-item>
     </mat-list> 

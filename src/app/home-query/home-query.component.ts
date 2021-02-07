@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { ReadingFormatterService } from '../services/reading-formatter.service';
+import { formattedReading } from '../shared/formattedReading';
 
 @Component({
   selector: 'app-home-query',
@@ -19,12 +21,15 @@ import { catchError, retry } from 'rxjs/operators';
 export class HomeQueryComponent implements OnInit {
   tempHttpRes : httpResponse;
   tempReading : reading;
+  tempFormattedReading : formattedReading;
 
   rainfallHttpRes : httpResponse;
   rainfallReading : reading;
+  rainfallFormattedReading : formattedReading;
 
   humidityHttpRes : httpResponse;
   humidityReading : reading;
+  humidityFormattedReading : formattedReading;
 
   stations : Station[];
   selectedStation : Station;
@@ -35,7 +40,8 @@ export class HomeQueryComponent implements OnInit {
   constructor(
     private actRoute : ActivatedRoute,
     private stationService : StationsService,
-    private httpMan : HttpManipulateService
+    private httpMan : HttpManipulateService,
+    private readingFormatter : ReadingFormatterService
     ) { }
 
   ngOnInit() {
@@ -65,22 +71,27 @@ export class HomeQueryComponent implements OnInit {
     )
 
     this.tempReading = this.httpMan.getLatestReadingFromHttpRes(this.tempHttpRes, this.selectedStation);
-    console.log(this.tempReading)
+    this.tempFormattedReading = this.readingFormatter.formatReading(this.tempReading, this.tempHttpRes.metadata);
 
     this.rainfallReading = this.httpMan.getLatestReadingFromHttpRes(this.rainfallHttpRes, this.selectedStation);
-    console.log(this.rainfallReading)
+    this.rainfallFormattedReading = this.readingFormatter.formatReading(this.rainfallReading, this.rainfallHttpRes.metadata);
 
     this.humidityReading = this.httpMan.getLatestReadingFromHttpRes(this.humidityHttpRes, this.selectedStation);
-    console.log(this.humidityReading)
-
+    this.humidityFormattedReading = this.readingFormatter.formatReading(this.humidityReading, this.humidityHttpRes.metadata);
   }
 
   
   ngOnChanges() {
     this.selectedStation = this.stations.filter(data => data.id === this.selectedStationID)[0]
+
     this.tempReading = this.httpMan.getLatestReadingFromHttpRes(this.tempHttpRes, this.selectedStation);
+    this.tempFormattedReading = this.readingFormatter.formatReading(this.tempReading, this.tempHttpRes.metadata);
+
     this.rainfallReading = this.httpMan.getLatestReadingFromHttpRes(this.rainfallHttpRes, this.selectedStation);
+    this.rainfallFormattedReading = this.readingFormatter.formatReading(this.rainfallReading, this.rainfallHttpRes.metadata);
+
     this.humidityReading = this.httpMan.getLatestReadingFromHttpRes(this.humidityHttpRes, this.selectedStation);
+    this.humidityFormattedReading = this.readingFormatter.formatReading(this.humidityReading, this.humidityHttpRes.metadata);
 
     console.log(this.selectedStationID);
   }

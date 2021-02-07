@@ -26,6 +26,8 @@ import { HomeQueryComponent } from './home-query/home-query.component';
 import { StationsService } from './services/stations.service';
 import { HttpRetrieveService } from './services/http-retrieve.service';
 import { HttpManipulateService } from './services/http-manipulate.service';
+import { ReadingFormatterService } from './services/reading-formatter.service';
+
 import { TempResolverService } from './services/resolvers/temp-resolver.service';
 import { RainfallResolverService } from './services/resolvers/rainfall-resolver.service';
 import { HumidityResolverService } from './services/resolvers/humidity-resolver.service';
@@ -62,7 +64,8 @@ import { HumidityResolverService } from './services/resolvers/humidity-resolver.
     TempResolverService,
     RainfallResolverService,
     HttpManipulateService,
-    HumidityResolverService
+    HumidityResolverService,
+    ReadingFormatterService
   ],
   bootstrap: [AppComponent]
 })
